@@ -105,5 +105,5 @@ theme: paperwhite
 deploy:
   type: 'git' 
   repo: git@github.com:Liusy12810/Liusy12810.github.io.git
-  branch: gh-pages
+  branch: blog
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
