@@ -1,4 +1,4 @@
-name: Pages
+name: Hexo Deploy
 
 on:
   push:
@@ -8,25 +8,31 @@ on:
 jobs:
   pages:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 19.x
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "19.7.0"
-      - name: Cache NPM dependencies
+          node-version: '19.7.0' # specify nodejs version
+
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
+          path: |
+            node_modules
+            ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-npm-cache
+            ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
