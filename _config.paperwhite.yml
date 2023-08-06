@@ -1,6 +1,6 @@
 menu:
   writing: /
-  who am I?: /about
+  who am I?: /about.html
 
 giscus:
   enable: true

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickey NavBar</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New';
+            color: #FFFFFF;
+        }
+
+        body {
+            background: #4b4c47;
+            height: fit-content;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.6s;
+            padding: 40px 100px;
+            z-index: 100000;
+        }
+
+        header .logo {
+            position: relative;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.6s;
+        }
+
+        header.sticky {
+            padding: 10px 100px;
+            background: rgba(42, 41, 39, 0.7);
+            box-shadow: rgba(42, 41, 39, 0.6) 0 2px 6px;
+        }
+
+        header ul {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header ul li {
+            position: relative;
+            list-style: none;
+        }
+
+        header ul li a {
+            position: relative;
+            margin: 0 15px;
+            text-decoration: none;
+            color: #FFFFFF;
+            letter-spacing: 2px;
+            font-weight: 500px;
+            transition: 0.6s;
+        }
+
+        header ul li a:hover {
+            text-decoration: underline dotted;
+        }
+
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url(./img/bg.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            transition: 2s;
+            box-shadow: rgba(42, 41, 39, 0.6) 0 2px 8px;
+        }
+
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            height: inherit;
+            margin: inherit;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .welcome-container h1 {
+            position: relative;
+            font-weight: 700;
+            font-size: 4em;
+            letter-spacing: 2px;
+            color: #f1f1ef;
+            text-shadow: rgba(42, 41, 39, 0.6) 3px 2px 6px;
+        }
+
+        .welcome-container p {
+            font-weight: 700;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+            color: #dddcd6;
+            text-shadow: rgba(42, 41, 39, 0.35) 3px 2px 6px;
+        }
+
+        #search-box {
+            position: relative;
+            background: none;
+            caret-color: #dddcd6;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 1.5em;
+            border: 0;
+            outline: 0;
+        }
+
+        #search-box::placeholder {
+            color: #dddcd6;
+        }
+
+        .search .cursor.blink {
+            position: relative;
+            animation: 1s blink infinite;
+            box-shadow: 0 0 0 #4b4c47;
+            border: none;
+            margin: 0;
+        }
+
+        @keyframes blink {
+            50% {
+                color: #000;
+                background: #dddcd6;
+                box-shadow: 0 0 5px #4b4c47;
+            }
+        }
+    </style>
+    <style>
+        main {
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">Logo</a>
+        <ul>
+            <li>
+                <a href="https://liusy12810.github.io">Home</a>
+            </li>
+            <li>
+                <a href="file:///E:/program/python/creeper/爬虫1/index.html">Collection</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </header>
+    <section class="banner">
+        <div class="welcome-container">
+            <h1>Welcome! 3-O'Clock</h1>
+            <p>Welcome Home</p>
+            <!-- <div class="search">
+                <form id="search-form" action="http://www.baidu.com/s" target="_blank">
+                    <input id="search-box" type="text" name="wd" placeholder="type to search" autocomplete="off"
+                        autofocus />
+                </form>
+                <div id="cursor" class="cursor blink" style="height: 0.5em;width: 1em;bottom: 0.5em;">
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <main>
+        <canvas id="code-rain"></canvas>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript">
+        window.addEventListener("scroll", function () {
+            const header = document.querySelector("header");
+            // const banner = document.querySelector(".banner");
+            header.classList.toggle("sticky", window.scrollY > 0);
+            // banner.classList.toggle("fixed", window.scrollY < banner.scrollHeight*0.4);
+        });
+
+        // document.querySelector("#search-box").addEventListener("input", function () {
+        //     const cursor = document.getElementById("cursor");
+        //     const searchBox = document.getElementById("search-box");
+        //     const width = cursor.clientWidth * searchBox.selectionStart < searchBox.clientWidth ?
+        //         cursor.clientWidth * searchBox.selectionStart :
+        //         searchBox.clientWidth;
+        //     cursor.style.left = `${width}px`;
+        // });
+    </script>
+    <script src="code-rain.js"></script>
+</body>
+
+</html>
